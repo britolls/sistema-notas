@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para o Amor da Minha Vida</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        night: '#0B0F19',
+                        darkCard: '#131C2E',
+                        magicBlue: '#3B82F6',
+                        neonBlue: '#60A5FA',
+                        twilightPurple: '#8B5CF6',
+                        glowBlue: '#00F0FF',
+                        ponyCyan: '#38BDF8'
+                    },
+                    fontFamily: {
+                        cursive: ['Great Vibes', 'cursive'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        cute: ['Quicksand', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B0F19;
+            color: #E2E8F0;
+            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E3A8A;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3B82F6;
+        }
+
+        /* Glow effects */
+        .blue-glow {
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.4), inset 0 0 15px rgba(59, 130, 246, 0.2);
+        }
+        
+        .blue-glow-hover:hover {
+            box-shadow: 0 0 35px rgba(59, 130, 246, 0.7), 0 0 15px rgba(96, 165, 250, 0.5);
+            transform: translateY(-4px);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 12px rgba(96, 165, 250, 0.7);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Sparkle particles */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            background: radial-gradient(circle, #60A5FA 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            animation: sparkleAnim 1s ease-out forwards;
+        }
+
+        @keyframes sparkleAnim {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(2.5) rotate(180deg); opacity: 0; }
+        }
+
+        /* Flip card styling */
+        .perspective {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        #starCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- Background Canvas for Stars & Magic Dust -->
+    <canvas id="starCanvas"></canvas>
+
+    <!-- Music Control Bar Top Right -->
+    <div class="fixed top-5 right-5 z-50 flex items-center gap-2">
+        <a href="#player-morgana" class="flex items-center gap-2 bg-darkCard/90 hover:bg-blue-900/80 border border-magicBlue/40 text-cyan-300 px-4 py-2 rounded-full backdrop-blur-md shadow-lg transition-all duration-300 hover:scale-105 border-glow text-xs font-semibold">
+            <i class="fas fa-compact-disc text-neonBlue animate-spin" style="animation-duration: 4s;"></i>
+            <span>Musica dedicada</span>
+        </a>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 max-w-5xl mx-auto px-4 py-8 space-y-24">
+
+        <!-- HEADER / HERO SECTION -->
+        <section class="text-center min-h-[80vh] flex flex-col justify-center items-center relative pt-6">
+            
+            <!-- Clean, elegant title without badge -->
+            <div class="space-y-3">
+                <p class="text-cyan-400 font-cute text-lg tracking-widest uppercase font-semibold">
+                     Meu bebê 
+                </p>
+
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white mb-2">
+                    Para o <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-400 font-cursive text-7xl md:text-9xl text-glow block mt-1">Amor da Minha Vida</span>
+                </h1>
+            </div>
+
+            <p class="max-w-2xl text-lg md:text-xl text-slate-300 font-cute leading-relaxed mt-6">
+                "Este cantinho mágico foi feito com todo o meu amor para celebrar cada segundo da nossa jornada juntos, do dia em que nos conhecemos até o infinito."
+            </p>
+
+            <!-- Decorative Elements -->
+            <div class="my-8 flex justify-center items-center gap-6 opacity-80">
+                <div class="h-[1px] w-16 md:w-28 bg-gradient-to-r from-transparent to-blue-500"></div>
+                <div class="p-3 bg-blue-900/30 rounded-full border border-blue-400/30 text-cyan-300 shadow-lg">
+                    <i class="fas fa-heart text-2xl text-neonBlue animate-pulse"></i>
+                </div>
+                <div class="h-[1px] w-16 md:w-28 bg-gradient-to-l from-transparent to-blue-500"></div>
+            </div>
+
+            <a href="#nossa-historia" class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold px-8 py-3.5 rounded-full shadow-lg blue-glow blue-glow-hover transition-all duration-300">
+                <span>Ver Nossa História</span>
+                <i class="fas fa-chevron-down text-sm"></i>
+            </a>
+        </section>
+
+        <!-- MUSIC PLAYER SECTION: MORGANA - KAMAITACHI -->
+        <section id="player-morgana" class="scroll-mt-12">
+            <div class="bg-darkCard/90 border border-blue-500/40 rounded-3xl p-6 md:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <!-- Song Art / Banner -->
+                    <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-gradient-to-br from-indigo-900 via-blue-900 to-slate-900 border border-cyan-400/50 flex-shrink-0 flex items-center justify-center relative group shadow-xl">
+                        <i class="fas fa-music text-4xl text-cyan-300 group-hover:scale-110 transition duration-300"></i>
+                        <span class="absolute top-2 right-2 flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
+                        </span>
+                    </div>
+
+                    <!-- Song details & Player embed -->
+                    <div class="flex-grow text-center md:text-left space-y-3 w-full">
+                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
+                            <span class="px-3 py-1 rounded-full bg-blue-950 border border-blue-400/30 text-xs font-semibold text-cyan-300">
+                                🎵 Nossa Trilha Sonora
+                            </span>
+                            <span class="px-3 py-1 rounded-full bg-indigo-950 border border-purple-400/30 text-xs font-semibold text-purple-300">
+                                Kamaitachi
+                            </span>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Morgana - Kamaitachi</h3>
+                            <p class="text-xs text-slate-400 font-cute mt-1">Aperte o play abaixo para ouvir essa música incrível enquanto lê nossa página ❤️</p>
+                        </div>
+
+                        <!-- Embedded YouTube Player for Morgana -->
+                        <div class="rounded-xl overflow-hidden border border-blue-900/60 shadow-md aspect-video max-h-48 w-full mt-2">
+                            <iframe 
+                                class="w-full h-full" 
+                                src="https://youtu.be/fwYar-oeGSk?si=TEABo0aCtv36GoIl" 
+                                title="Morgana - Kamaitachi" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+
+                        <!-- Quick External Links -->
+                        <div class="flex flex-wrap justify-center md:justify-start gap-3 pt-1">
+                            <a href="https://open.spotify.com/search/Morgana%20Kamaitachi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 border border-emerald-500/40 rounded-xl text-xs font-semibold transition">
+                                <i class="fab fa-spotify text-sm"></i> Ouvir no Spotify
+                            </a>
+                            <a href="https://youtu.be/fwYar-oeGSk?si=TEABo0aCtv36GoIl" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-red-950/80 hover:bg-red-900 text-red-300 border border-red-500/40 rounded-xl text-xs font-semibold transition">
+                                <i class="fab fa-youtube text-sm"></i> Ver no YouTube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTRO & PHOTO SECTION -->
+        <section id="nossa-historia" class="scroll-mt-10">
+            <div class="bg-darkCard/80 border border-blue-900/40 rounded-3xl p-6 md:p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Couple Photo Container -->
+                    <div class="md:col-span-5 flex flex-col items-center">
+                        <div class="relative group">
+                            <div class="absolute -inset-1.5 bg-gradient-to-r from-cyan-400 via-blue-600 to-indigo-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+                            
+                            <div class="relative rounded-2xl overflow-hidden bg-slate-900 border-2 border-blue-400/50 p-2 shadow-2xl">
+                                <img id="couplePhoto" 
+                                     src="imagens/WhatsApp Image 2026-09-28 at 13.51.56 (1).jpeg" 
+                                     alt="Nossa Foto Juntos" 
+                                     class="w-full h-80 object-cover rounded-xl transition duration-500 group-hover:scale-105"
+                                     onerror="this.src='https://placehold.co/600x800/1e293b/60a5fa?text=Sua+Foto+Aqui'">
+                                
+                                <div class="absolute bottom-4 left-0 right-0 text-center px-4">
+                                    <span class="inline-block bg-slate-950/80 backdrop-blur-md border border-blue-400/30 text-blue-200 text-xs px-3 py-1 rounded-full font-medium">
+                                         Nós Dois My Baby
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Romantic Message -->
+                    <div class="md:col-span-7 space-y-4">
+                        <div class="inline-flex items-center gap-2 text-cyan-400 text-sm font-semibold tracking-wider uppercase">
+                            <i class="fas fa-sparkles"></i>
+                            <span>Minha Declaração</span>
+                        </div>
+
+                        <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight">
+                            Você é a minha melhor escolha e o meu lugar seguro
+                        </h2>
+
+                        <p class="text-slate-300 leading-relaxed font-cute text-base md:text-lg">
+                            Desde que você entrou na minha vida, tudo ganhou mais brilho e sentido. Você trouxe a leveza dos sorrisos verdadeiros e a paz de ter ao meu lado a garota mais especial do mundo.
+                        </p>
+
+                        <p class="text-slate-300 leading-relaxed font-cute text-base md:text-lg">
+                            Este cantinho azul foi planejado em cada detalhe para te fazer sorrir e lembrar o quanto eu sou apaixonado por você.
+                        </p>
+
+                        <!-- MLP Inspired Quote -->
+                        <div class="p-4 rounded-xl bg-blue-950/40 border-l-4 border-cyan-400 flex items-start gap-3 mt-4">
+                            <i class="fas fa-quote-left text-cyan-400 text-xl mt-1"></i>
+                            <div>
+                                <p class="text-xs text-cyan-200 italic font-cute">
+                                    "Entre estrelas, universos e magias, eu escolheria você de novo em todas as vidas."
+                                </p>
+                                <span class="text-[10px] text-blue-400 font-bold block mt-1 uppercase tracking-widest">— Inspirado nos reinos de Equestria </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMELINE SECTION -->
+        <section class="space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl md:text-5xl font-bold text-white">Nossa Linha do Tempo</h2>
+                <p class="text-slate-400 font-cute">Do primeiro dia até o nosso para sempre</p>
+            </div>
+
+            <div class="relative border-l-2 border-blue-500/30 ml-4 md:ml-1/2 md:-translate-x-1/2 space-y-12 py-4">
+
+                <!-- Item 1 -->
+                <div class="relative flex flex-col md:flex-row items-start group">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-darkCard border-2 border-cyan-400 flex items-center justify-center text-cyan-300 shadow-md group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-slate-950 transition duration-300">
+                        <i class="fas fa-star text-xs"></i>
+                    </div>
+                    <div class="ml-8 md:ml-0 md:w-1/2 md:pr-10 md:text-right">
+                        <div class="bg-darkCard/90 border border-blue-900/40 p-5 rounded-2xl shadow-xl hover:border-cyan-400/50 transition duration-300">
+                            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase">O Primeiro Dia</span>
+                            <h3 class="text-xl font-bold text-white mt-1">O Dia em que Te Conheci</h3>
+                            <p class="text-slate-300 text-sm font-cute mt-2">
+                                O momento exato em que meu destino acertou na escolha.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="relative flex flex-col md:flex-row items-start group md:flex-row-reverse">
+                    <div class="absolute -left-[17px] md:left-auto md:-right-[17px] top-1.5 w-8 h-8 rounded-full bg-darkCard border-2 border-blue-400 flex items-center justify-center text-blue-300 shadow-md group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-slate-950 transition duration-300">
+                        <i class="fas fa-comments text-xs"></i>
+                    </div>
+                    <div class="ml-8 md:ml-0 md:w-1/2 md:pl-10 text-left">
+                        <div class="bg-darkCard/90 border border-blue-900/40 p-5 rounded-2xl shadow-xl hover:border-blue-400/50 transition duration-300">
+                            <span class="text-xs font-bold text-blue-400 tracking-wider uppercase">Primeiras Conversas</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Descobrindo Você</h3>
+                            <p class="text-slate-300 text-sm font-cute mt-2">
+                                Horas conversando sem ver o tempo passar, descobrindo suas músicas favoritas, seu gosto por coisas além da minha compreensão e seu jeito de ser.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="relative flex flex-col md:flex-row items-start group">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-darkCard border-2 border-indigo-400 flex items-center justify-center text-indigo-300 shadow-md group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-slate-950 transition duration-300">
+                        <i class="fas fa-heart text-xs"></i>
+                    </div>
+                    <div class="ml-8 md:ml-0 md:w-1/2 md:pr-10 md:text-right">
+                        <div class="bg-darkCard/90 border border-blue-900/40 p-5 rounded-2xl shadow-xl hover:border-indigo-400/50 transition duration-300">
+                            <span class="text-xs font-bold text-indigo-400 tracking-wider uppercase">Nos juntos</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Nossa felicidade</h3>
+                            <p class="text-slate-300 text-sm font-cute mt-2">
+                                Quando começamos a parecer um casal de verdade.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="relative flex flex-col md:flex-row items-start group md:flex-row-reverse">
+                    <div class="absolute -left-[17px] md:left-auto md:-right-[17px] top-1.5 w-8 h-8 rounded-full bg-darkCard border-2 border-cyan-300 flex items-center justify-center text-cyan-200 shadow-md group-hover:scale-110 group-hover:bg-cyan-300 group-hover:text-slate-950 transition duration-300">
+                        <i class="fas fa-infinity text-xs"></i>
+                    </div>
+                    <div class="ml-8 md:ml-0 md:w-1/2 md:pl-10 text-left">
+                        <div class="bg-darkCard/90 border border-blue-900/40 p-5 rounded-2xl shadow-xl hover:border-cyan-300/50 transition duration-300">
+                            <span class="text-xs font-bold text-cyan-300 tracking-wider uppercase">Hoje & Sempre</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Construindo Nosso Futuro</h3>
+                            <p class="text-slate-300 text-sm font-cute mt-2">
+                                Cada novo dia ao seu lado é uma nova conquista cheia de amor, piadas internas e cumplicidade.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- REASONS WHY I LOVE YOU (INTERACTIVE FLIP CARDS) -->
+        <section class="space-y-8">
+            <div class="text-center space-y-2">
+                <div class="inline-block px-3 py-1 rounded-full bg-blue-900/30 border border-blue-500/30 text-xs text-blue-300 uppercase tracking-widest">
+                    Clique nos cards para revelar
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold text-white">Motivos Pelos Quais Eu Amo Você</h2>
+                <p class="text-slate-400 font-cute">Pequenos detalhes que me fazem se apaixonar todos os dias</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Card 1 -->
+                <div class="card-flip h-48 cursor-pointer perspective" onclick="flipCard(this)">
+                    <div class="card-inner relative w-full h-full transform-style-3d duration-500">
+                        <div class="absolute inset-0 bg-darkCard border border-blue-800/40 rounded-2xl p-6 flex flex-col justify-center items-center text-center backface-hidden blue-glow-hover">
+                            <div class="w-12 h-12 rounded-full bg-blue-950 flex items-center justify-center text-neonBlue text-xl mb-3">
+                                <i class="fas fa-smile-beam"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Seu Sorriso</h3>
+                            <span class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                                <i class="fas fa-hand-pointer text-[10px]"></i> Clique para ler
+                            </span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-indigo-950 border border-cyan-400 rounded-2xl p-6 flex flex-col justify-center items-center text-center backface-hidden rotate-y-180">
+                            <p class="text-slate-200 text-sm font-cute">
+                                Tem o poder único de iluminar até o dia mais sombrio e me deixar feliz na hora.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card-flip h-48 cursor-pointer perspective" onclick="flipCard(this)">
+                    <div class="card-inner relative w-full h-full transform-style-3d duration-500">
+                        <div class="absolute inset-0 bg-darkCard border border-blue-800/40 rounded-2xl p-6 flex flex-col justify-center items-center text-center backface-hidden blue-glow-hover">
+                            <div class="w-12 h-12 rounded-full bg-blue-950 flex items-center justify-center text-cyan-300 text-xl mb-3">
+                                <i class="fas fa-magic"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Sua Doçura</h3>
+                            <span class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                                <i class="fas fa-hand-pointer text-[10px]"></i> Clique para ler
+                            </span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-indigo-950 border border-cyan-400 rounded-2xl p-6 flex flex-col justify-center items-center text-center backface-hidden rotate-y-180">
+                            <p class="text-slate-200 text-sm font-cute">
+                                O carinho sincero e a delicadeza com que você cuida de quem ama.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-flip h-48 cursor-pointer perspective" onclick="flipCard(this)">
+                    <div class="card-inner relative w-full h-full transform-style-3d duration-500">
+                        <div class="absolute inset-0 bg-darkCard border border-blue-800/40 rounded-2xl p-6 flex flex-col justify-center items-center text-center backface-hidden blue-glow-hover">
+                            <div class="w-12 h-12 rounded-full bg-blue-950 flex items-center justify-center text-indigo-300 text-xl mb-3">
+                                <i class="fas fa-laugh-squint"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Nossas Risadas</h3>
+                            <span class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                                <i class="fas fa-hand-pointer text-[10px]"></i> Clique para ler
+                            </span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-indigo-950 border border-cyan-400 rounded-2xl p-6 flex flex-col justify-center items-center text-center backface-hidden rotate-y-180">
+                            <p class="text-slate-200 text-sm font-cute">
+                                Nossas piadas internas e o quanto a gente se diverte com coisas simples.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SURPRISE MODAL TRIGGER -->
+        <section class="bg-gradient-to-r from-blue-950/60 via-darkCard to-indigo-950/60 border border-blue-500/30 rounded-3xl p-8 text-center relative overflow-hidden">
+            <div class="flex justify-center items-center gap-4 mb-4">
+                <svg class="w-10 h-10 text-cyan-400 fill-current animate-bounce" viewBox="0 0 24 24">
+                    <path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z"/>
+                </svg>
+                <span class="text-2xl font-bold text-white font-cute">Uma Mensagem para Você</span>
+                <svg class="w-10 h-10 text-cyan-400 fill-current animate-bounce" viewBox="0 0 24 24">
+                    <path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z"/>
+                </svg>
+            </div>
+
+            <button onclick="openSurpriseModal()" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-full shadow-lg blue-glow blue-glow-hover transition-all duration-300 inline-flex items-center gap-3 group text-lg">
+                <i class="fas fa-gift text-xl group-hover:rotate-12 transition-transform"></i>
+                <span>Abrir Mensagem Especial</span>
+            </button>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center py-6 border-t border-blue-900/30 text-slate-500 text-sm font-cute">
+            <p>Feito com todo o amor do mundo para a minha pessoa favorita </p>
+            <p class="text-xs text-blue-400/60 mt-1">Para Sempre & Sempre • Ouvindo Morgana - Kamaitachi</p>
+        </footer>
+
+    </div>
+
+    <!-- SURPRISE MODAL -->
+    <div id="surpriseModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-darkCard border-2 border-cyan-400/80 rounded-3xl max-w-lg w-full p-6 md:p-8 relative text-center shadow-2xl transform scale-90 transition-transform duration-300 id-modal-content">
+            
+            <button onclick="closeSurpriseModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl p-2">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="w-16 h-16 bg-blue-950 rounded-full border border-cyan-400 flex items-center justify-center text-cyan-300 text-2xl mx-auto mb-4 animate-pulse">
+                <i class="fas fa-crown"></i>
+            </div>
+
+            <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">Minha Promessa </h3>
+            
+            <p class="text-slate-300 font-cute leading-relaxed mb-6">
+                Prometo estar sempre ao seu lado, apoiar seus sonhos, te fazer sorrir nos dias difíceis e te amar cada dia mais!
+            </p>
+
+            <div class="p-4 rounded-xl bg-blue-950/60 border border-blue-500/30 text-blue-200 font-cursive text-2xl mb-6">
+                "Você é o meu amor da vida inteira!"
+            </div>
+
+            <button onclick="triggerMagicExplosion(); closeSurpriseModal();" class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold py-3 rounded-xl hover:opacity-90 transition shadow-lg">
+                Receber Chuva de Carinho 
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 1. STAR & MAGIC DUST CANVAS ANIMATION
+        const canvas = document.getElementById('starCanvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initStars();
+        }
+
+        function initStars() {
+            stars = [];
+            const count = Math.floor((canvas.width * canvas.height) / 8000);
+            for (let i = 0; i < count; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 0.5,
+                    alpha: Math.random(),
+                    speed: Math.random() * 0.02 + 0.005,
+                    color: Math.random() > 0.4 ? '#60A5FA' : (Math.random() > 0.5 ? '#38BDF8' : '#A78BFA')
+                });
+            }
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                star.alpha += star.speed;
+                if (star.alpha > 1 || star.alpha < 0) {
+                    star.speed = -star.speed;
+                }
+                ctx.fillStyle = star.color;
+                ctx.globalAlpha = Math.abs(star.alpha);
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(drawStars);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        drawStars();
+
+        // 2. CARD FLIP FUNCTION
+        function flipCard(cardElement) {
+            const inner = cardElement.querySelector('.card-inner');
+            inner.classList.toggle('rotate-y-180');
+            createSparkles(cardElement);
+        }
+
+        // 3. SPARKLE EFFECT ON CLICK
+        function createSparkles(element) {
+            const rect = element.getBoundingClientRect();
+            for (let i = 0; i < 8; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.width = Math.random() * 15 + 10 + 'px';
+                sparkle.style.height = sparkle.style.width;
+                sparkle.style.left = (rect.left + rect.width / 2 + (Math.random() * 100 - 50)) + 'px';
+                sparkle.style.top = (rect.top + rect.height / 2 + (Math.random() * 100 - 50)) + 'px';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        }
+
+        // 4. SURPRISE MODAL LOGIC
+        const modal = document.getElementById('surpriseModal');
+        const modalContent = modal.querySelector('.id-modal-content');
+
+        function openSurpriseModal() {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-90');
+                modalContent.classList.add('scale-100');
+            }, 10);
+            triggerMagicExplosion();
+        }
+
+        function closeSurpriseModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-90');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // 5. MAGIC HEART/STAR EXPLOSION
+        function triggerMagicExplosion() {
+            const symbols = ['✨', '💙', '⭐', '💖', '👑'];
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                particle.style.position = 'fixed';
+                particle.style.left = '50vw';
+                particle.style.top = '50vh';
+                particle.style.fontSize = Math.random() * 20 + 16 + 'px';
+                particle.style.pointerEvents = 'none';
+                particle.style.zIndex = '9999';
+                particle.style.transition = 'transform 1.5s ease-out, opacity 1.5s ease-out';
+                
+                document.body.appendChild(particle);
+
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 300 + 100;
+                const x = Math.cos(angle) * velocity;
+                const y = Math.sin(angle) * velocity;
+
+                setTimeout(() => {
+                    particle.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random() * 360}deg)`;
+                    particle.style.opacity = '0';
+                }, 20);
+
+                setTimeout(() => particle.remove(), 1600);
+            }
+        }
+    </script>
+    <a href="nossa-casinha.html" class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold px-8 py-3.5 rounded-full">
+    Conhecer Nossa Casinha
+</a>
+</body>
+</html>
